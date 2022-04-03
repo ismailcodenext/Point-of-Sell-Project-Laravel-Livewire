@@ -39,7 +39,7 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }} ">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
@@ -59,7 +59,7 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="{{route('view.users')}}" class="nav-link active">
+                            <a href="{{route('view-users')}}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View User</p>
                             </a>
@@ -77,7 +77,7 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="#" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Profile</p>
                             </a>
@@ -85,7 +85,7 @@
                     </ul>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="#" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Chanage Password</p>
                             </a>
@@ -98,7 +98,7 @@
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-key"></i>
                         {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
