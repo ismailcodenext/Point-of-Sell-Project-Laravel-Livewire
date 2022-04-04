@@ -6,8 +6,16 @@ use Livewire\Component;
 
 class ViewUsers extends Component
 {
+
+
     public function render()
     {
+
         return view('livewire.view-users')->extends('layouts.app')->section('content');
+    }
+
+    public function addNewUser()
+    {
+        $this->dispatchBrowserEvent('show-userForm');
     }
 }

@@ -26,11 +26,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', \App\Http\Controllers\Admin\DashboardController::class)->name('admin');
 
-    // Route::get('admin', DashboardLayouts::class)->name('admin');
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/view-users', ViewUsers::class)->name('view-users');
     });
+
+Route::get('/counter', \App\Http\Livewire\Counter::class)->name('counter');
 
 

@@ -4,7 +4,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Admin Dashboard</span>
+        <span class="brand-text font-weight-light">Pos Management</span>
     </a>
 
     <!-- Sidebar -->
@@ -51,10 +51,10 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas  fa-book"></i>
                         <p>
                             Manage User
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="nav-icon fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
