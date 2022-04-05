@@ -50,16 +50,16 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas  fa-book"></i>
+                    <a href="#" class="nav-link {{ request()->is('view-users') ? 'active' : '' }}">
+                        <i class="nav-icon fas  fa-users"></i>
                         <p>
                             Manage User
-                            <i class="nav-icon fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="{{route('view-users')}}" class="nav-link active">
+                            <a href="{{route('view-users')}}" class="nav-link {{ request()->is('view-users') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View User</p>
                             </a>

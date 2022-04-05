@@ -44,19 +44,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>
-                                        <a href="">
-                                            <i class="fa fa-edit mr-2"></i>
-                                        </a>
-                                        <a href="">
-                                            <i class="fa fa-trash text-danger"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            <a href="" wire:click.prevent="edit({{ $user }})">
+                                                <i class="fa fa-edit mr-2"></i>
+                                            </a>
+                                            <a href="">
+                                                <i class="fa fa-trash text-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
 
                                 </tbody>
                             </table>
@@ -69,40 +72,83 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="formUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="formUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+         wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        @if($showUserEditModel)
+                            <span>Edit User</span>
+                        @else
+                            <span>Add New user</span>
+                        @endif
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form autocomplete="off" wire:submit.prevent="{{ $showUserEditModel ? 'updateUser' : 'createUser'}}">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter your full name">
+                            <input type="text" wire:model.defer="state.name"
+                                   class="form-control @error('name') is-invalid @enderror" id="name"
+                                   aria-describedby="nameHelp"
+                                   placeholder="Enter your full name">
+                            @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message  }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Your email address">
+                            <input type="email" wire:model.defer="state.email"
+                                   class="form-control @error('email') is-invalid @enderror" id="email"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter Your email address">
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" wire:model.defer="state.password"
+                                   class="form-control @error('password') is-invalid @enderror" id="password"
+                                   placeholder="Password">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="passwordConfirmation">Confirm Password</label>
-                            <input type="password" class="form-control" id="passwordConfirmation" placeholder="Confirm Password">
+                            <input type="password" wire:model.defer="state.password_confirmation" class="form-control"
+                                   id="passwordConfirmation"
+                                   placeholder="Confirm Password">
                         </div>
+
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                            class="fa fa-times mr-1"></i>Cancle
+                    </button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
+                        @if($showUserEditModel)
+                            <span>Save Change</span>
+                        @else
+                            <span>Save</span>
+                        @endif
+                    </button>
                 </div>
             </div>
+            </form>
+
         </div>
     </div>
 
